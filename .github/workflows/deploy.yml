@@ -38,5 +38,5 @@ jobs:
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.DEPLOYMENT_REPO_TOKEN }}
-          repository: your-org/mern-deployment
+          repository: yaxx/mern-deployment
           event-type: deploy
