@@ -9,6 +9,10 @@ npm install
 npm run dev
 ```
 
+## Deployment
+
+This application is automatically deployed via GitHub Actions when changes are pushed to the main branch.
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
