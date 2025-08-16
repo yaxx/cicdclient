@@ -39,4 +39,4 @@ jobs:
         with:
           token: ${{ secrets.DEPLOYMENT_REPO_TOKEN }}
           repository: yaxx/mern-deployment
-          event-type: deploy
+          event-type: deploy-frontend
