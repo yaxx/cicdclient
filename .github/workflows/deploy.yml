@@ -1,11 +1,11 @@
-name: Deploy Frontend to Production
+name: Build & Trigger Deployment (Frontend)
 
 on:
   push:
-    branches: [ main ]  # or your deploy branch
+    branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -34,13 +34,9 @@ jobs:
       - name: Push Docker image
         run: docker push code2013/mern-frontend:latest
 
-      - name: SSH to production & update frontend
-        uses: appleboy/ssh-action@master
+      - name: Trigger Deployment Repo
+        uses: peter-evans/repository-dispatch@v2
         with:
-          host: ${{ secrets.PROD_SERVER_HOST }}
-          username: ${{ secrets.PROD_SERVER_USER }}
-          key: ${{ secrets.PROD_SERVER_KEY }}
-          script: |
-            cd /var/www/mern-app
-            docker compose -f docker-compose.prod.yml pull frontend
-            docker compose -f docker-compose.prod.yml up -d frontend
+          token: ${{ secrets.DEPLOYMENT_REPO_TOKEN }}
+          repository: your-org/mern-deployment
+          event-type: deploy
